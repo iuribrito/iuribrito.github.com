@@ -1,11 +1,270 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="cf-2fa-verify" content="406e3a1630e97f6">
-        <title>Iuri Brito</title>
-    </head>
-    <body>
-        <h1>Iuri Brito Nascimento</h1>
-    </body>
+<html lang="pt-BR" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="cf-2fa-verify" content="406e3a1630e97f6">
+  <title>Iuri Brito — Fullstack Developer</title>
+  <meta name="description" content="Iuri Brito Nascimento — desenvolvedor fullstack. Sistemas de ponta a ponta, infraestrutura self-hosted, Go, NestJS, SvelteKit.">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ícone reutilizado pelos placeholders de imagem -->
+  <svg style="display:none" aria-hidden="true">
+    <symbol id="icon-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <rect x="3" y="4" width="18" height="16" rx="2"/>
+      <circle cx="8.5" cy="9.5" r="1.5"/>
+      <path d="M21 16l-5.5-5.5a1.5 1.5 0 0 0-2 0L4 19"/>
+    </symbol>
+  </svg>
+
+  <header class="site-header">
+    <a href="#topo" class="brand">~/iuri<span class="caret">_</span></a>
+    <nav class="site-nav">
+      <a href="#sobre">sobre</a>
+      <a href="#skills">skills</a>
+      <a href="#projetos">projetos</a>
+      <a href="#experiencia">experiência</a>
+      <a href="#formacao">formação</a>
+    </nav>
+    <button type="button" class="btn btn-secondary btn-icon theme-toggle" id="theme-toggle" aria-label="Alternar tema">☾</button>
+    <a href="#contato" class="btn btn-primary cta-contato">contato</a>
+  </header>
+
+  <main>
+    <section id="topo" class="hero-section">
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot accent"></span>
+          <span class="label">iuri@dev — zsh</span>
+        </div>
+        <div class="terminal-body">
+          <div>
+            <p class="prompt"><span class="chevron">❯</span> whoami</p>
+            <h1 class="hero-title">Iuri Brito<br>Nascimento</h1>
+            <p class="hero-role">Fullstack Developer</p>
+            <p class="hero-lede">Construo sistemas de ponta a ponta — do modelo de domínio às filas, do deploy ao painel que o time usa todo dia — rodando em infraestrutura que eu mesmo mantenho.</p>
+            <div class="hero-ctas">
+              <a href="#projetos" class="btn btn-primary">Ver projetos</a>
+              <a href="#contato" class="btn btn-secondary">Falar comigo</a>
+            </div>
+            <p class="hero-status"><span class="chevron">❯</span> status <span class="value">disponível para projetos</span><span class="caret">▉</span></p>
+          </div>
+          <div class="hero-aside">
+            <div class="avatar">
+              <div class="img-placeholder">
+                <svg><use href="#icon-image"/></svg>
+                <span>foto (fundo escuro)</span>
+              </div>
+            </div>
+            <div class="hero-meta">
+              <p>stack&nbsp;&nbsp;<span class="value">go · nestjs · sveltekit</span></p>
+              <p>infra&nbsp;&nbsp;<span class="value">self-hosted / 3 nós</span></p>
+              <p>local&nbsp;&nbsp;<span class="value">Brasil — UTC-3</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre" class="section">
+      <div class="section-head">
+        <span class="file">01_sobre.md</span>
+        <span class="rule"></span>
+        <span class="count">2 parágrafos</span>
+      </div>
+      <div class="about-grid">
+        <h2>Arquitetura primeiro, infraestrutura sob controle.</h2>
+        <div>
+          <p>Trabalho em produtos web com times pequenos, onde a mesma pessoa decide o contrato da API, o formato da mensagem na fila e como aquilo sobe em produção. Prefiro sistemas explícitos: limites de domínio claros, comunicação assíncrona onde faz sentido e observabilidade desde o primeiro deploy.</p>
+          <p>Rodo quase tudo em infraestrutura self-hosted — um cluster de três nós com Docker, Traefik e backups versionados. Isso mudou como projeto software: custo, falha e recuperação deixam de ser abstrações de fatura e passam a ser decisões de desenho.</p>
+          <div class="about-stats">
+            <div><p class="num">6 anos</p><p class="label">em produção</p></div>
+            <div><p class="num">12+</p><p class="label">serviços no ar</p></div>
+            <div><p class="num">99,9%</p><p class="label">uptime do cluster</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="section-head">
+        <span class="file">02_skills.json</span>
+        <span class="rule"></span>
+        <span class="count">4 categorias</span>
+      </div>
+      <div class="skills-legend">
+        <span class="legend-label">nível:</span>
+        <span class="badge badge-3">uso diário</span>
+        <span class="badge badge-2">confortável</span>
+        <span class="badge badge-1">já usei</span>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <p class="name"><span class="slash">//</span> backend</p>
+          <div class="skill-badges">
+            <span class="badge badge-3">Go</span>
+            <span class="badge badge-3">NestJS</span>
+            <span class="badge badge-2">Node.js</span>
+            <span class="badge badge-3">REST</span>
+            <span class="badge badge-2">PHP / Laravel</span>
+            <span class="badge badge-1">gRPC</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <p class="name"><span class="slash">//</span> frontend</p>
+          <div class="skill-badges">
+            <span class="badge badge-3">SvelteKit</span>
+            <span class="badge badge-3">TypeScript</span>
+            <span class="badge badge-3">HTML/CSS</span>
+            <span class="badge badge-2">Angular</span>
+            <span class="badge badge-1">Alpine.js</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <p class="name"><span class="slash">//</span> dados &amp; mensageria</p>
+          <div class="skill-badges">
+            <span class="badge badge-3">MongoDB</span>
+            <span class="badge badge-3">RabbitMQ</span>
+            <span class="badge badge-2">PostgreSQL</span>
+            <span class="badge badge-2">Redis</span>
+            <span class="badge badge-1">SQLite</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <p class="name"><span class="slash">//</span> infra</p>
+          <div class="skill-badges">
+            <span class="badge badge-3">Docker</span>
+            <span class="badge badge-3">self-hosted</span>
+            <span class="badge badge-2">Linux</span>
+            <span class="badge badge-2">Traefik</span>
+            <span class="badge badge-2">CI/CD</span>
+            <span class="badge badge-1">Grafana</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projetos" class="section">
+      <div class="section-head">
+        <span class="file">03_projetos/</span>
+        <span class="rule"></span>
+        <span class="count">6 itens</span>
+      </div>
+      <div class="projects-grid" id="projects-grid"></div>
+    </section>
+
+    <section id="experiencia" class="section">
+      <div class="section-head">
+        <span class="file">04_experiencia.log</span>
+        <span class="rule"></span>
+        <span class="count">3 entradas</span>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <p class="period">2024 — hoje</p>
+          <h4>Fullstack Developer — freelance</h4>
+          <p class="org">clientes próprios</p>
+          <p class="text">Projetos de ponta a ponta para times pequenos: levantamento, arquitetura, implementação e operação. Mantenho os sistemas no ar em infraestrutura própria quando o cliente prefere custo fixo.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <p class="period">2022 — 2024</p>
+          <h4>Desenvolvedor Fullstack</h4>
+          <p class="org">plataforma de gaming/cassino online</p>
+          <p class="text">Carteira, motor de bônus e integrações com provedores de jogo. Trabalho sob requisitos de auditoria e latência, com liquidação assíncrona e ledger append-only.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <p class="period">2020 — 2022</p>
+          <h4>Desenvolvedor Fullstack</h4>
+          <p class="org">SaaS B2B</p>
+          <p class="text">Produto multi-tenant em Go e Angular. Migrei a integração entre módulos de chamada sincrônica para mensageria, o que tirou o acoplamento de disponibilidade entre os serviços.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="formacao" class="section">
+      <div class="section-head">
+        <span class="file">05_formacao.md</span>
+        <span class="rule"></span>
+        <span class="count">3 entradas</span>
+      </div>
+      <div class="education-grid">
+        <div class="education-card">
+          <div class="row"><span class="period">2019 — 2023</span><span class="status">concluído</span></div>
+          <h4>Bacharelado em Ciência da Computação</h4>
+          <p class="org">Universidade Federal</p>
+          <p class="text">TCC sobre consistência eventual em sistemas distribuídos de pagamento, com protótipo em Go.</p>
+        </div>
+        <div class="education-card">
+          <div class="row"><span class="period">2017 — 2019</span><span class="status">concluído</span></div>
+          <h4>Técnico em Informática</h4>
+          <p class="org">Instituto Federal</p>
+          <p class="text">Base de redes, banco de dados e programação — onde comecei a mexer com servidor próprio.</p>
+        </div>
+        <div class="education-card">
+          <div class="row"><span class="period">2025</span><span class="status">em curso</span></div>
+          <h4>Especialização em Arquitetura de Software</h4>
+          <p class="org">pós-graduação (em curso)</p>
+          <p class="text">Padrões de integração, mensageria e observabilidade aplicados ao que já rodo em produção.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato" class="section" style="padding-bottom: clamp(44px, 5cqw, 80px)">
+      <div class="section-head">
+        <span class="file">06_contato.sh</span>
+        <span class="rule"></span>
+        <span class="count">resposta em 1 dia útil</span>
+      </div>
+      <div class="contact-grid">
+        <div>
+          <h2>Vamos conversar sobre o seu sistema.</h2>
+          <p>Se preferir, chame direto no e-mail — chega no mesmo lugar que o formulário.</p>
+          <div class="contact-links">
+            <a href="https://github.com/iuribrito" target="_blank" rel="noopener noreferrer"><span class="prefix">gh&nbsp;&nbsp;</span><span class="value">github.com/iuribrito</span></a>
+            <a href="https://linkedin.com/in/iuribrito" target="_blank" rel="noopener noreferrer"><span class="prefix">in&nbsp;&nbsp;</span><span class="value">linkedin.com/in/iuribrito</span></a>
+            <a href="mailto:ola@iuri.dev"><span class="prefix">em&nbsp;&nbsp;</span><span class="value">ola@iuri.dev</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>© 2026 Iuri Brito Nascimento</span>
+    <span class="push">HTML · CSS · JS — GitHub Pages</span>
+  </footer>
+
+  <div class="modal-backdrop" id="modal-backdrop" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1" id="modal-dialog">
+      <div class="modal-bar">
+        <span class="slug" id="modal-slug"></span>
+        <button type="button" class="btn btn-secondary btn-icon modal-close" id="modal-close" aria-label="Fechar">&times;</button>
+      </div>
+      <div class="modal-content">
+        <h3 id="modal-title"></h3>
+        <p class="modal-meta" id="modal-meta"></p>
+        <div class="modal-stack" id="modal-stack"></div>
+        <p class="modal-long" id="modal-long"></p>
+        <div class="modal-shots" id="modal-shots"></div>
+        <p class="modal-challenges-label">DESAFIOS TÉCNICOS</p>
+        <ul class="modal-challenges" id="modal-challenges"></ul>
+        <div class="modal-actions">
+          <a href="https://github.com/iuribrito" class="btn btn-primary" target="_blank" rel="noopener noreferrer" id="modal-repo">Repositório</a>
+          <a href="#" class="btn btn-secondary" target="_blank" rel="noopener noreferrer" id="modal-demo">Demo ao vivo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/site.js"></script>
+</body>
 </html>

@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/nocturne-d9843308-872e-4b84-a56c-ea94a06677e3/styles.css">
+  <script src="_ds/nocturne-d9843308-872e-4b84-a56c-ea94a06677e3/_ds_bundle.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
+  <script src="./image-slot.js"></script>
+  <style>
+    :root { --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    @keyframes noct-caret { 0%, 49% { opacity: 1 } 50%, 100% { opacity: 0 } }
+    /* Tema claro: a rampa neutra inverte, o accent escurece um passo.
+       Todo o resto do site lê var(--color-*), então não precisa de duplicação. */
+    [data-theme="light"] {
+      --color-bg: #f7f8ff;
+      --color-surface: #e9ebf8;
+      --color-text: #232532;
+      --color-accent: #5d5294;
+      --color-divider: color-mix(in srgb, #232532 18%, transparent);
+      --color-neutral-100: #292b31;
+      --color-neutral-200: #3f424d;
+      --color-neutral-300: #595d6c;
+      --color-neutral-400: #4d5160;
+      --color-neutral-500: #595d6c;
+      --color-neutral-600: #686c7d;
+      --color-neutral-700: #cfd3e5;
+      --color-neutral-800: #dee1f0;
+      --color-neutral-900: #e4e7f5;
+      --color-accent-300: #423a6a;
+      --color-accent-400: #5d5294;
+      --color-accent-500: #5d5294;
+      --color-accent-600: #796cbf;
+      --color-accent-700: #b5abfc;
+      --color-accent-800: #e7e5fe;
+      --color-accent-100: #2b2741;
+      --shadow-md: 0 0 0 1px #cfd3e5, 0 6px 18px rgba(41,43,49,0.10);
+      --shadow-lg: 0 0 0 1px #b2b6ca, 0 16px 40px rgba(41,43,49,0.18);
+    }
+    @media (prefers-color-scheme: light) {
+      [data-theme="auto"] {
+        --color-bg: #f7f8ff; --color-surface: #e9ebf8; --color-text: #232532;
+        --color-accent: #5d5294; --color-divider: color-mix(in srgb, #232532 18%, transparent);
+        --color-neutral-100: #292b31; --color-neutral-200: #3f424d; --color-neutral-300: #595d6c;
+        --color-neutral-400: #4d5160; --color-neutral-500: #595d6c; --color-neutral-600: #686c7d;
+        --color-neutral-700: #cfd3e5; --color-neutral-800: #dee1f0; --color-neutral-900: #e4e7f5;
+        --color-accent-300: #423a6a; --color-accent-400: #5d5294; --color-accent-500: #5d5294;
+        --color-accent-600: #796cbf; --color-accent-700: #b5abfc;
+        --color-accent-800: #e7e5fe; --color-accent-100: #2b2741;
+      }
+    }
+  </style>
+</helmet>
+
+<div style="background: #101120; min-height: 100%; padding-bottom: 40px">
+
+  <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 10px 16px; padding: 11px 18px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em; color: #7c809a">
+    <span>mockup &mdash; portf&oacute;lio single-page</span>
+    <div style="display: flex; gap: 6px; margin-left: auto">
+      <button onClick="{{ setDesktop }}" style="{{ desktopBtnStyle }}">desktop</button>
+      <button onClick="{{ setMobile }}" style="{{ mobileBtnStyle }}">mobile 420</button>
+      <button onClick="{{ toggleModal }}" style="{{ modalBtnStyle }}">modal</button>
+      <button onClick="{{ toggleTheme }}" style="{{ themeBtnStyle }}">{{ themeLabel }}</button>
+      <button onClick="{{ cycleBg }}" style="{{ bgBtnStyle }}">{{ bgLabel }}</button>
+    </div>
+  </div>
+
+  <div data-theme="{{ theme }}" style="{{ frameStyle }}">
+   <div style="{{ pageStyle }}">
+
+    <header style="position: sticky; top: 0; z-index: 30; display: flex; align-items: center; flex-wrap: nowrap; gap: 12px; padding: 11px clamp(18px, 5cqw, 72px); background: color-mix(in srgb, var(--color-bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid color-mix(in srgb, var(--color-divider) 60%, transparent)">
+      <a href="#topo" style="flex: none; font-family: var(--font-mono); font-size: 14px; color: var(--color-text); text-decoration: none">~/iuri<span style="color: var(--color-accent); animation: noct-caret 1.1s steps(1) infinite">_</span></a>
+      <nav style="display: flex; flex: 1 1 auto; min-width: 0; align-items: center; gap: 16px; overflow-x: auto; scrollbar-width: none; font-family: var(--font-mono); font-size: 12.5px; padding: 2px 0">
+        <a href="#sobre" style="flex: none; color: var(--color-neutral-400); text-decoration: none" style-hover="color: var(--color-accent)">sobre</a>
+        <a href="#skills" style="flex: none; color: var(--color-neutral-400); text-decoration: none" style-hover="color: var(--color-accent)">skills</a>
+        <a href="#projetos" style="flex: none; color: var(--color-neutral-400); text-decoration: none" style-hover="color: var(--color-accent)">projetos</a>
+        <a href="#experiencia" style="flex: none; color: var(--color-neutral-400); text-decoration: none" style-hover="color: var(--color-accent)">experi&ecirc;ncia</a>
+        <a href="#formacao" style="flex: none; color: var(--color-neutral-400); text-decoration: none" style-hover="color: var(--color-accent)">forma&ccedil;&atilde;o</a>
+      </nav>
+      <button onClick="{{ toggleTheme }}" class="btn btn-secondary btn-icon" aria-label="Alternar tema" style="flex: none; width: 30px; height: 30px; font-family: var(--font-mono); font-size: 12px; border-color: var(--color-divider); color: var(--color-neutral-400)">{{ themeGlyph }}</button>
+      <a href="#contato" class="btn btn-primary" style="flex: none; font-family: var(--font-mono); font-size: 12.5px; padding: 4px 12px">contato</a>
+    </header>
+
+    <section id="topo" style="padding: clamp(28px, 5cqw, 72px) clamp(18px, 5cqw, 72px) clamp(36px, 5cqw, 80px)">
+      <div style="border: 1px solid var(--color-neutral-800); border-radius: var(--radius-md); background: linear-gradient(165deg, var(--color-surface), var(--color-bg) 70%); box-shadow: var(--shadow-md); overflow: hidden">
+        <div style="display: flex; align-items: center; gap: 7px; padding: 10px 14px; border-bottom: 1px solid var(--color-neutral-800); background: color-mix(in srgb, var(--color-neutral-900) 55%, transparent)">
+          <span style="width: 9px; height: 9px; border-radius: 50%; background: var(--color-neutral-700)"></span>
+          <span style="width: 9px; height: 9px; border-radius: 50%; background: var(--color-neutral-700)"></span>
+          <span style="width: 9px; height: 9px; border-radius: 50%; background: var(--color-accent-700)"></span>
+          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-neutral-500); margin-left: 8px">iuri@dev &mdash; zsh</span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(26px, 4cqw, 56px); align-items: center; padding: clamp(24px, 4cqw, 52px) clamp(20px, 3.5cqw, 48px)">
+          <div>
+            <p style="font-family: var(--font-mono); font-size: 12.5px; color: var(--color-neutral-500); margin: 0 0 18px"><span style="color: var(--color-accent)">&#10095;</span> whoami</p>
+            <h1 style="font-size: clamp(34px, 5.6cqw, 62px); line-height: 1.05; letter-spacing: -0.025em; margin: 0 0 12px">Iuri Brito<br>Nascimento</h1>
+            <p style="font-family: var(--font-mono); font-size: clamp(14px, 1.6cqw, 17px); color: var(--color-accent-300); margin: 0 0 20px">Fullstack Developer</p>
+            <p style="font-size: clamp(14.5px, 1.4cqw, 17px); line-height: 1.65; color: var(--color-neutral-300); max-width: 44ch; text-wrap: pretty; margin: 0 0 28px">Construo sistemas de ponta a ponta &mdash; do modelo de dom&iacute;nio &agrave;s filas, do deploy ao painel que o time usa todo dia &mdash; rodando em infraestrutura que eu mesmo mantenho.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 26px">
+              <a href="#projetos" class="btn btn-primary" style="padding: 9px 18px">Ver projetos</a>
+              <a href="#contato" class="btn btn-secondary" style="padding: 9px 18px">Falar comigo</a>
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 12px; line-height: 1.9; color: var(--color-neutral-400)">
+              <p style="margin: 0"><span style="color: var(--color-accent)">&#10095;</span> status <span style="color: var(--color-accent-300)">dispon&iacute;vel para projetos</span><span style="animation: noct-caret 1.1s steps(1) infinite">&#9608;</span></p>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px; align-items: flex-start">
+            <div style="width: clamp(150px, 20cqw, 216px); aspect-ratio: 1; border-radius: var(--radius-md); overflow: hidden; background: var(--color-neutral-900); box-shadow: var(--shadow-sm)">
+              <image-slot id="avatar" shape="rounded" radius="8" placeholder="Sua foto (fundo escuro)"></image-slot>
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 11.5px; line-height: 1.95; color: var(--color-neutral-500)">
+              <p style="margin: 0">stack&nbsp;&nbsp;<span style="color: var(--color-neutral-200)">go &middot; nestjs &middot; sveltekit</span></p>
+              <p style="margin: 0">infra&nbsp;&nbsp;<span style="color: var(--color-neutral-200)">self-hosted / 3 n&oacute;s</span></p>
+              <p style="margin: 0">local&nbsp;&nbsp;<span style="color: var(--color-neutral-200)">Brasil &mdash; UTC-3</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre" style="padding: 0 clamp(18px, 5cqw, 72px) clamp(36px, 5cqw, 80px)">
+      <div style="display: flex; align-items: center; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--color-divider); margin-bottom: clamp(24px, 3cqw, 40px)">
+        <span style="font-family: var(--font-mono); font-size: 12px; color: var(--color-accent)">01_sobre.md</span>
+        <span style="flex: 1; height: 1px; background: var(--color-divider)"></span>
+        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-neutral-500)">2 par&aacute;grafos</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: clamp(24px, 4cqw, 64px)">
+        <h2 style="font-size: clamp(24px, 3cqw, 34px); max-width: 24ch; margin: 0">Arquitetura primeiro, infraestrutura sob controle.</h2>
+        <div>
+          <p style="font-size: 15px; line-height: 1.7; color: var(--color-neutral-300); text-wrap: pretty">Trabalho em produtos web com times pequenos, onde a mesma pessoa decide o contrato da API, o formato da mensagem na fila e como aquilo sobe em produ&ccedil;&atilde;o. Prefiro sistemas expl&iacute;citos: limites de dom&iacute;nio claros, comunica&ccedil;&atilde;o ass&iacute;ncrona onde faz sentido e observabilidade desde o primeiro deploy.</p>
+          <p style="font-size: 15px; line-height: 1.7; color: var(--color-neutral-300); text-wrap: pretty">Rodo quase tudo em infraestrutura self-hosted &mdash; um cluster de tr&ecirc;s n&oacute;s com Docker, Traefik e backups versionados. Isso mudou como projeto software: custo, falha e recupera&ccedil;&atilde;o deixam de ser abstra&ccedil;&otilde;es de fatura e passam a ser decis&otilde;es de desenho.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 20px 40px; margin-top: 24px; font-family: var(--font-mono)">
+            <div><p style="font-size: 23px; color: var(--color-text); margin: 0">6 anos</p><p style="font-size: 10.5px; letter-spacing: 0.08em; color: var(--color-neutral-500); margin: 0">EM PRODU&Ccedil;&Atilde;O</p></div>
+            <div><p style="font-size: 23px; color: var(--color-text); margin: 0">12+</p><p style="font-size: 10.5px; letter-spacing: 0.08em; color: var(--color-neutral-500); margin: 0">SERVI&Ccedil;OS NO AR</p></div>
+            <div><p style="font-size: 23px; color: var(--color-text); margin: 0">99,9%</p><p style="font-size: 10.5px; letter-spacing: 0.08em; color: var(--color-neutral-500); margin: 0">UPTIME DO CLUSTER</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" style="padding: 0 clamp(18px, 5cqw, 72px) clamp(36px, 5cqw, 80px)">
+      <div style="display: flex; align-items: center; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--color-divider); margin-bottom: clamp(24px, 3cqw, 40px)">
+        <span style="font-family: var(--font-mono); font-size: 12px; color: var(--color-accent)">02_skills.json</span>
+        <span style="flex: 1; height: 1px; background: var(--color-divider)"></span>
+        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-neutral-500)">4 categorias</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin-bottom: 18px">
+        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-neutral-500)">n&iacute;vel:</span>
+        <sc-for list="{{ legend }}" as="l" hint-placeholder-count="3">
+          <span style="{{ l.style }}">{{ l.label }}</span>
+        </sc-for>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px">
+        <sc-for list="{{ skillGroups }}" as="group" hint-placeholder-count="4">
+          <div style="display: flex; flex-direction: column; gap: 13px; padding: 18px; border: 1px solid var(--color-neutral-800); border-radius: var(--radius-md); background: color-mix(in srgb, var(--color-surface) 55%, transparent)">
+            <p style="font-family: var(--font-mono); font-size: 12px; color: var(--color-neutral-500); margin: 0"><span style="color: var(--color-accent)">//</span> {{ group.name }}</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px">
+              <sc-for list="{{ group.items }}" as="item" hint-placeholder-count="4">
+                <span style="{{ item.style }}">{{ item.name }}</span>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section id="projetos" style="padding: 0 clamp(18px, 5cqw, 72px) clamp(36px, 5cqw, 80px)">
+      <div style="display: flex; align-items: center; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--color-divider); margin-bottom: clamp(24px, 3cqw, 40px)">
+        <span style="font-family: var(--font-mono); font-size: 12px; color: var(--color-accent)">03_projetos/</span>
+        <span style="flex: 1; height: 1px; background: var(--color-divider)"></span>
+        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-neutral-500)">6 itens</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(max(270px, (100% - 40px) / 3), 1fr)); gap: 16px">
+        <sc-for list="{{ projects }}" as="p" hint-placeholder-count="6">
+          <article role="button" tabindex="0" onClick="{{ p.onOpen }}" onKeyDown="{{ p.onKey }}" style="display: flex; flex-direction: column; border: 1px solid var(--color-neutral-800); border-radius: var(--radius-md); background: var(--color-surface); overflow: hidden; cursor: pointer; transition: border-color 140ms ease, transform 140ms ease" style-hover="border-color: var(--color-accent); transform: translateY(-2px)">
+            <div style="aspect-ratio: 16 / 9; background: var(--color-neutral-900)">
+              <image-slot id="thumb-{{ p.slug }}" shape="rect" placeholder="{{ p.name }} &mdash; screenshot"></image-slot>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 9px; padding: 16px 18px 18px">
+              <div style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap">
+                <h3 style="font-size: 17px; margin: 0">{{ p.name }}</h3>
+                <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-neutral-500)">{{ p.kind }}</span>
+              </div>
+              <p style="font-size: 13.5px; line-height: 1.6; color: var(--color-neutral-400); margin: 0">{{ p.summary }}</p>
+              <div style="display: flex; flex-wrap: wrap; gap: 5px">
+                <sc-for list="{{ p.stack }}" as="t" hint-placeholder-count="3">
+                  <span class="tag tag-outline" style="font-family: var(--font-mono); font-size: 10.5px; padding: 2px 8px">{{ t }}</span>
+                </sc-for>
+              </div>
+              <p style="font-family: var(--font-mono); font-size: 11.5px; color: var(--color-accent); margin: 3px 0 0">ver detalhes &rarr;</p>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </section>
+
+    <section id="experiencia" style="padding: 0 clamp(18px, 5cqw, 72px) clamp(36px, 5cqw, 80px)">
+      <div style="display: flex; align-items: center; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--color-divider); margin-bottom: clamp(24px, 3cqw, 40px)">
+        <span style="font-family: var(--font-mono); font-size: 12px; color: var(--color-accent)">04_experiencia.log</span>
+        <span style="flex: 1; height: 1px; background: var(--color-divider)"></span>
+        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-neutral-500)">3 entradas</span>
+      </div>
+      <div style="border-left: 1px solid var(--color-neutral-800); padding-left: 24px; max-width: 760px">
+        <sc-for list="{{ timeline }}" as="job" hint-placeholder-count="3">
+          <div style="position: relative; padding-bottom: 30px">
+            <span style="position: absolute; left: -29px; top: 6px; width: 9px; height: 9px; border-radius: 50%; background: var(--color-accent); box-shadow: 0 0 0 4px var(--color-bg)"></span>
+            <p style="font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.05em; color: var(--color-accent-400); margin: 0 0 6px">{{ job.period }}</p>
+            <h4 style="font-size: 17px; margin: 0 0 2px">{{ job.role }}</h4>
+            <p style="font-family: var(--font-mono); font-size: 12px; color: var(--color-neutral-500); margin: 0 0 8px">{{ job.org }}</p>
+            <p style="font-size: 14px; line-height: 1.65; color: var(--color-neutral-400); margin: 0; max-width: 62ch; text-wrap: pretty">{{ job.text }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section id="formacao" style="padding: 0 clamp(18px, 5cqw, 72px) clamp(36px, 5cqw, 80px)">
+      <div style="display: flex; align-items: center; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--color-divider); margin-bottom: clamp(24px, 3cqw, 40px)">
+        <span style="font-family: var(--font-mono); font-size: 12px; color: var(--color-accent)">05_formacao.md</span>
+        <span style="flex: 1; height: 1px; background: var(--color-divider)"></span>
+        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-neutral-500)">3 entradas</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px">
+        <sc-for list="{{ education }}" as="ed" hint-placeholder-count="3">
+          <div style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid var(--color-neutral-800); border-radius: var(--radius-md); background: color-mix(in srgb, var(--color-surface) 55%, transparent)">
+            <div style="display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 11.5px">
+              <span style="color: var(--color-accent-400)">{{ ed.period }}</span>
+              <span style="margin-left: auto; color: var(--color-neutral-500)">{{ ed.status }}</span>
+            </div>
+            <h4 style="font-size: 16px; margin: 0; text-wrap: pretty">{{ ed.degree }}</h4>
+            <p style="font-family: var(--font-mono); font-size: 12px; color: var(--color-neutral-500); margin: 0">{{ ed.org }}</p>
+            <p style="font-size: 13.5px; line-height: 1.6; color: var(--color-neutral-400); margin: 0; text-wrap: pretty">{{ ed.text }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section id="contato" style="padding: 0 clamp(18px, 5cqw, 72px) clamp(44px, 5cqw, 80px)">
+      <div style="display: flex; align-items: center; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--color-divider); margin-bottom: clamp(24px, 3cqw, 40px)">
+        <span style="font-family: var(--font-mono); font-size: 12px; color: var(--color-accent)">06_contato.sh</span>
+        <span style="flex: 1; height: 1px; background: var(--color-divider)"></span>
+        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-neutral-500)">resposta em 1 dia &uacute;til</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(24px, 4cqw, 56px)">
+        <div>
+          <h2 style="font-size: clamp(24px, 3cqw, 34px); max-width: 20ch; margin: 0 0 16px">Vamos conversar sobre o seu sistema.</h2>
+          <p style="font-size: 14.5px; line-height: 1.7; color: var(--color-neutral-400); max-width: 42ch; margin: 0">Se preferir, chame direto no e-mail &mdash; chega no mesmo lugar que o formul&aacute;rio.</p>
+          <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 24px; font-family: var(--font-mono); font-size: 13.5px">
+            <a href="https://github.com" style="color: var(--color-neutral-200); text-decoration: none" style-hover="color: var(--color-accent)"><span style="color: var(--color-neutral-500)">gh&nbsp;&nbsp;</span>github.com/iuribrito</a>
+            <a href="https://linkedin.com" style="color: var(--color-neutral-200); text-decoration: none" style-hover="color: var(--color-accent)"><span style="color: var(--color-neutral-500)">in&nbsp;&nbsp;</span>linkedin.com/in/iuribrito</a>
+            <a href="mailto:ola@iuri.dev" style="color: var(--color-neutral-200); text-decoration: none" style-hover="color: var(--color-accent)"><span style="color: var(--color-neutral-500)">em&nbsp;&nbsp;</span>ola@iuri.dev</a>
+          </div>
+        </div>
+        <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ onSubmit }}" style="display: flex; flex-direction: column; gap: 13px; padding: 20px; border: 1px solid var(--color-neutral-800); border-radius: var(--radius-md); background: color-mix(in srgb, var(--color-surface) 65%, transparent)">
+            <div class="field"><label for="c-nome">Nome</label><input id="c-nome" class="input" type="text" placeholder="Como te chamo"></div>
+            <div class="field"><label for="c-email">E-mail</label><input id="c-email" class="input" type="email" placeholder="voce@empresa.com"></div>
+            <div class="field"><label for="c-msg">Mensagem</label><textarea id="c-msg" class="input" placeholder="Contexto, prazo, stack..."></textarea></div>
+            <button type="submit" class="btn btn-primary btn-block" style="padding: 9px 18px">Enviar mensagem</button>
+            <p style="font-family: var(--font-mono); font-size: 10.5px; color: var(--color-neutral-500); margin: 0">POST para endpoint serverless &mdash; sem backend pr&oacute;prio</p>
+          </form>
+        </sc-if>
+      </div>
+    </section>
+
+    <footer style="display: flex; flex-wrap: wrap; gap: 8px 20px; padding: 20px clamp(18px, 5cqw, 72px) 30px; border-top: 1px solid var(--color-divider); font-family: var(--font-mono); font-size: 11px; color: var(--color-neutral-500)">
+      <span>&copy; 2026 Iuri Brito Nascimento</span>
+      <span style="margin-left: auto">HTML &middot; CSS &middot; JS &mdash; GitHub Pages</span>
+    </footer>
+
+    <sc-if value="{{ activeProject }}">
+      <div onClick="{{ closeModal }}" style="{{ backdropStyle }}">
+        <div onClick="{{ stop }}" style="{{ dialogStyle }}">
+          <div style="position: sticky; top: 0; display: flex; align-items: center; gap: 12px; padding: 12px 18px; background: color-mix(in srgb, var(--color-surface) 95%, transparent); border-bottom: 1px solid var(--color-neutral-800)">
+            <span style="font-family: var(--font-mono); font-size: 11.5px; color: var(--color-neutral-500)">{{ activeProject.slug }}.md</span>
+            <button onClick="{{ closeModal }}" class="btn btn-secondary btn-icon" aria-label="Fechar" style="margin-left: auto; width: 30px; height: 30px; font-size: 15px">&times;</button>
+          </div>
+          <div style="padding: clamp(20px, 3cqw, 32px)">
+            <h3 style="font-size: clamp(23px, 3cqw, 30px); margin: 0 0 8px">{{ activeProject.name }}</h3>
+            <p style="font-family: var(--font-mono); font-size: 12px; color: var(--color-neutral-500); margin: 0 0 16px">{{ activeProject.kind }} &middot; {{ activeProject.year }}</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px">
+              <sc-for list="{{ activeProject.stack }}" as="t" hint-placeholder-count="4">
+                <span class="tag tag-accent" style="font-family: var(--font-mono); font-size: 11px">{{ t }}</span>
+              </sc-for>
+            </div>
+            <p style="font-size: 15px; line-height: 1.7; color: var(--color-neutral-300); max-width: 68ch; text-wrap: pretty; margin: 0">{{ activeProject.long }}</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin: 24px 0">
+              <div style="aspect-ratio: 16 / 10; background: var(--color-neutral-900); border-radius: var(--radius-sm)">
+                <image-slot id="shot-a-{{ activeProject.slug }}" shape="rounded" radius="4" placeholder="Screenshot 1"></image-slot>
+              </div>
+              <div style="aspect-ratio: 16 / 10; background: var(--color-neutral-900); border-radius: var(--radius-sm)">
+                <image-slot id="shot-b-{{ activeProject.slug }}" shape="rounded" radius="4" placeholder="Screenshot 2"></image-slot>
+              </div>
+            </div>
+            <p style="font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.11em; color: var(--color-accent-400); margin: 0 0 12px">DESAFIOS T&Eacute;CNICOS</p>
+            <ul style="display: flex; flex-direction: column; gap: 10px; margin: 0 0 26px; padding-left: 18px; color: var(--color-neutral-300); font-size: 14.5px; line-height: 1.6">
+              <sc-for list="{{ activeProject.challenges }}" as="c" hint-placeholder-count="3">
+                <li style="max-width: 66ch">{{ c }}</li>
+              </sc-for>
+            </ul>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px">
+              <a href="https://github.com" class="btn btn-primary" style="padding: 9px 18px">Repositório</a>
+              <a href="https://example.com" class="btn btn-secondary" style="padding: 9px 18px">Demo ao vivo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+   </div>
+  </div>
+
+  <sc-if value="{{ showStyleSheet }}" hint-placeholder-val="{{ true }}">
+    <div style="max-width: 1040px; margin: 0 auto; padding: clamp(32px, 5cqw, 64px) clamp(18px, 4cqw, 40px) 0; color: #e9e9ed; font-family: var(--font-body)">
+      <p style="font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.13em; color: #7c809a; margin: 0 0 20px">FOLHA DE ESTILO &mdash; refer&ecirc;ncia, n&atilde;o faz parte do site</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: clamp(26px, 4cqw, 52px)">
+        <div>
+          <h4 style="font-size: 15px; margin: 0 0 14px">Paleta &mdash; escuro (padr&atilde;o)</h4>
+          <div style="display: flex; flex-direction: column; gap: 7px; font-family: var(--font-mono); font-size: 12px">
+            <sc-for list="{{ palette }}" as="c" hint-placeholder-count="7">
+              <div style="display: flex; align-items: center; gap: 12px">
+                <span style="width: 40px; height: 26px; border-radius: 4px; border: 1px solid #3f424d; background: {{ c.hex }}"></span>
+                <span style="color: #cfd3e5; width: 84px">{{ c.hex }}</span>
+                <span style="color: #9397ab">{{ c.role }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <h4 style="font-size: 15px; margin: 24px 0 14px">Paleta &mdash; claro</h4>
+          <div style="display: flex; flex-direction: column; gap: 7px; font-family: var(--font-mono); font-size: 12px">
+            <sc-for list="{{ paletteLight }}" as="c" hint-placeholder-count="4">
+              <div style="display: flex; align-items: center; gap: 12px">
+                <span style="width: 40px; height: 26px; border-radius: 4px; border: 1px solid #3f424d; background: {{ c.hex }}"></span>
+                <span style="color: #cfd3e5; width: 84px">{{ c.hex }}</span>
+                <span style="color: #9397ab">{{ c.role }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size: 15px; margin: 0 0 14px">Tipografia</h4>
+          <p style="font-size: 25px; line-height: 1.15; margin: 0 0 4px">Inter 500 &mdash; t&iacute;tulos</p>
+          <p style="font-family: var(--font-mono); font-size: 12px; color: #9397ab; margin: 0 0 20px">clamp(24&ndash;62px) &middot; letter-spacing -0.025em</p>
+          <p style="font-size: 15px; line-height: 1.7; color: #cfd3e5; margin: 0 0 4px">Inter 400 &mdash; corpo de texto, 14,5&ndash;15px, linha 1.7, m&aacute;ximo 68ch.</p>
+          <p style="font-family: var(--font-mono); font-size: 12px; color: #9397ab; margin: 0 0 20px">weights 400/500 apenas</p>
+          <p style="font-family: var(--font-mono); font-size: 13px; color: #d2cefd; margin: 0 0 4px">JetBrains Mono 400/500 &mdash; badges, r&oacute;tulos, terminal</p>
+          <p style="font-family: var(--font-mono); font-size: 12px; color: #9397ab; margin: 0 0 24px">subset latin &middot; display=swap &middot; 2 fam&iacute;lias no total</p>
+          <h4 style="font-size: 15px; margin: 0 0 14px">Implementa&ccedil;&atilde;o</h4>
+          <p style="font-size: 14px; line-height: 1.7; color: #cfd3e5; margin: 0">Tudo em CSS vari&aacute;veis + grid com <span style="font-family: var(--font-mono); font-size: 12.5px">repeat(auto-fit, minmax())</span>, ent&atilde;o o layout colapsa sem media query. O modal &eacute; um bloco <span style="font-family: var(--font-mono); font-size: 12.5px">hidden</span> alternado por ~20 linhas de JS (clique, Esc, clique fora). O tema l&ecirc; <span style="font-family: var(--font-mono); font-size: 12.5px">prefers-color-scheme</span> e o toggle grava em <span style="font-family: var(--font-mono); font-size: 12.5px">localStorage</span>.</p>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showForm&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Conteúdo&quot;},&quot;showStyleSheet&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Conteúdo&quot;},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;dark&quot;,&quot;light&quot;,&quot;auto&quot;],&quot;default&quot;:&quot;dark&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Tema&quot;},&quot;bg&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;aurora&quot;,&quot;scan&quot;,&quot;diagonal&quot;,&quot;contorno&quot;,&quot;limpo&quot;],&quot;default&quot;:&quot;aurora&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Tema&quot;}}">
+const PROJECTS = [
+  {
+    slug: "aurora", name: "Aurora", kind: "SaaS multi-tenant", year: "2025",
+    stack: ["Go", "MongoDB", "RabbitMQ", "SvelteKit"],
+    summary: "Plataforma de bilhetagem multi-tenant com emissão e reconciliação assíncronas.",
+    long: "Aurora atende operadoras que vendem por canais diferentes e precisam fechar caixa no fim do dia. O núcleo em Go expõe uma API de venda sincrônica e publica cada evento em filas separadas por operadora; a reconciliação roda como consumidor independente, então um atraso do adquirente nunca bloqueia a venda. O painel em SvelteKit consome o mesmo modelo por SSE.",
+    challenges: [
+      "Isolamento por tenant sem multiplicar bancos: um cluster MongoDB com chave de partição por operadora e índices compostos por período.",
+      "Idempotência na reconciliação — cada evento carrega um hash determinístico, o que permite reprocessar um dia inteiro sem duplicar lançamento.",
+      "Backpressure nas filas: prefetch ajustado por consumidor e fila de descarte para mensagens envenenadas, com alerta próprio."
+    ]
+  },
+  {
+    slug: "hive", name: "Hive", kind: "Infra self-hosted", year: "2025",
+    stack: ["Go", "Docker", "Traefik", "PostgreSQL"],
+    summary: "Orquestrador e painel para subir e monitorar serviços em um cluster de três nós.",
+    long: "Hive nasceu do incômodo de manter três nós à mão. É um daemon em Go que lê definições declarativas de serviço, aplica no Docker, registra rotas no Traefik e guarda histórico de deploy no PostgreSQL. O painel mostra saúde, uso de recursos e o diff da alteração antes de aplicar.",
+    challenges: [
+      "Reconciliação entre estado desejado e real sem agente em cada nó — o daemon fala com a API do Docker por socket TLS.",
+      "Certificados automáticos para dezenas de subdomínios internos, com DNS challenge e renovação escalonada.",
+      "Rollback confiável: cada deploy guarda a definição anterior e o digest da imagem, então voltar é uma operação e não uma arqueologia."
+    ]
+  },
+  {
+    slug: "spinroom", name: "Spinroom", kind: "Plataforma de gaming", year: "2024",
+    stack: ["NestJS", "Redis", "RabbitMQ", "Angular"],
+    summary: "Carteira e motor de bônus para uma plataforma de cassino online com saldo em tempo real.",
+    long: "Spinroom é o serviço de carteira de uma plataforma de gaming: recebe apostas e prêmios de vários provedores, mantém saldo consistente e aplica regras de bônus com rollover. Escrito em NestJS, com Redis para lock por jogador e RabbitMQ para liquidação e antifraude fora do caminho crítico.",
+    challenges: [
+      "Consistência de saldo sob concorrência: lock otimista por jogador em Redis e ledger append-only como fonte da verdade.",
+      "Integração com seis provedores de jogo, cada um com contrato próprio — adaptadores isolados atrás de uma porta única de domínio.",
+      "Auditoria exigida por regulação: todo movimento é rastreável até a requisição original, com retenção e exportação por operador."
+    ]
+  },
+  {
+    slug: "cartola", name: "Cartola", kind: "E-commerce (freelance)", year: "2024",
+    stack: ["PHP", "Laravel", "MySQL", "Alpine.js"],
+    summary: "Loja e retaguarda para um distribuidor regional, com catálogo e integração fiscal.",
+    long: "Projeto freelance para um distribuidor que vendia por WhatsApp e planilha. Loja em Laravel com catálogo por tabela de preço, retaguarda de pedidos, integração com emissor de nota e importação do ERP por arquivo. A vitrine roda sem framework de frontend: server-side rendering com Alpine.js nas interações.",
+    challenges: [
+      "Preço por cliente e por região sem explodir o cache — resolução de tabela no servidor e cache segmentado por chave de política.",
+      "Importação noturna do ERP tolerante a arquivo malformado, com relatório de linha rejeitada em vez de falha total.",
+      "Primeiro carregamento abaixo de 1s em 3G: HTML crítico inline, imagens em WebP e zero JS bloqueante."
+    ]
+  },
+  {
+    slug: "relay", name: "Relay", kind: "Serviço interno", year: "2023",
+    stack: ["Go", "WebSocket", "Redis", "SvelteKit"],
+    summary: "Gateway de notificação em tempo real usado por três produtos internos.",
+    long: "Relay centraliza o envio de eventos para o navegador. Os produtos publicam em um tópico; o gateway em Go mantém as conexões WebSocket, resolve permissão por evento e entrega. O console em SvelteKit mostra conexões vivas, taxa de entrega e replay dos últimos eventos por canal.",
+    challenges: [
+      "Fan-out para milhares de conexões com uso de memória previsível — buffers limitados e descarte explícito de cliente lento.",
+      "Reconexão sem perda: cada canal guarda uma janela curta de eventos em Redis e o cliente reconecta informando o último id visto.",
+      "Autorização por evento sem consultar o produto a cada mensagem, via token com escopos de canal e cache curto."
+    ]
+  },
+  {
+    slug: "dossier", name: "Dossier", kind: "Ferramenta CLI", year: "2023",
+    stack: ["Go", "SQLite", "Cobra"],
+    summary: "CLI que gera e versiona documentação de API a partir do código em produção.",
+    long: "Dossier lê handlers anotados, monta um esquema OpenAPI e compara com a versão anterior guardada em SQLite, apontando quebras de contrato antes do merge. Roda em CI e como binário único, sem dependência de runtime.",
+    challenges: [
+      "Detecção de breaking change de verdade: comparação estrutural do esquema, não diff de texto, com classificação por severidade.",
+      "Binário único e rápido o suficiente para rodar em todo push — análise incremental com cache por hash de arquivo.",
+      "Saída legível no terminal e em markdown para o comentário do pull request, a partir da mesma estrutura."
+    ]
+  }
+];
+
+// nível 3 = uso diário / domínio, 2 = confortável, 1 = trabalhei o suficiente
+const SKILLS = [
+  { name: "backend", items: [["Go", 3], ["NestJS", 3], ["Node.js", 2], ["REST", 3], ["PHP / Laravel", 2], ["gRPC", 1]] },
+  { name: "frontend", items: [["SvelteKit", 3], ["TypeScript", 3], ["HTML/CSS", 3], ["Angular", 2], ["Alpine.js", 1]] },
+  { name: "dados & mensageria", items: [["MongoDB", 3], ["RabbitMQ", 3], ["PostgreSQL", 2], ["Redis", 2], ["SQLite", 1]] },
+  { name: "infra", items: [["Docker", 3], ["self-hosted", 3], ["Linux", 2], ["Traefik", 2], ["CI/CD", 2], ["Grafana", 1]] }
+];
+
+const LEVELS = {
+  3: { label: "uso di\u00e1rio", background: "var(--color-accent-800)", color: "var(--color-accent-100)", border: "1px solid var(--color-accent-600)" },
+  2: { label: "confort\u00e1vel", background: "var(--color-neutral-800)", color: "var(--color-neutral-200)", border: "1px solid var(--color-neutral-700)" },
+  1: { label: "j\u00e1 usei", background: "transparent", color: "var(--color-neutral-400)", border: "1px dashed var(--color-neutral-700)" }
+};
+
+const badgeStyle = (lvl) => ({
+  display: "inline-flex", alignItems: "center", gap: "6px",
+  fontFamily: "var(--font-mono)", fontSize: "11.5px", letterSpacing: "0.02em",
+  padding: "3px 10px", borderRadius: "6px",
+  background: LEVELS[lvl].background, color: LEVELS[lvl].color, border: LEVELS[lvl].border
+});
+
+const SKILL_GROUPS = SKILLS.map((g) => ({
+  name: g.name,
+  items: g.items.map(([name, lvl]) => ({ name, lvl, style: badgeStyle(lvl) }))
+}));
+
+const LEGEND = [3, 2, 1].map((lvl) => ({ label: LEVELS[lvl].label, style: badgeStyle(lvl) }));
+
+const TIMELINE = [
+  {
+    period: "2024 — hoje", role: "Fullstack Developer — freelance", org: "clientes próprios",
+    text: "Projetos de ponta a ponta para times pequenos: levantamento, arquitetura, implementação e operação. Mantenho os sistemas no ar em infraestrutura própria quando o cliente prefere custo fixo."
+  },
+  {
+    period: "2022 — 2024", role: "Desenvolvedor Fullstack", org: "plataforma de gaming/cassino online",
+    text: "Carteira, motor de bônus e integrações com provedores de jogo. Trabalho sob requisitos de auditoria e latência, com liquidação assíncrona e ledger append-only."
+  },
+  {
+    period: "2020 — 2022", role: "Desenvolvedor Fullstack", org: "SaaS B2B",
+    text: "Produto multi-tenant em Go e Angular. Migrei a integração entre módulos de chamada sincrônica para mensageria, o que tirou o acoplamento de disponibilidade entre os serviços."
+  }
+];
+
+const EDUCATION = [
+  {
+    period: "2019 — 2023", degree: "Bacharelado em Ciência da Computação",
+    org: "Universidade Federal", status: "concluído",
+    text: "TCC sobre consistência eventual em sistemas distribuídos de pagamento, com protótipo em Go."
+  },
+  {
+    period: "2017 — 2019", degree: "Técnico em Informática", org: "Instituto Federal", status: "concluído",
+    text: "Base de redes, banco de dados e programação — onde comecei a mexer com servidor próprio."
+  },
+  {
+    period: "2025", degree: "Especialização em Arquitetura de Software", org: "pós-graduação (em curso)", status: "em curso",
+    text: "Padrões de integração, mensageria e observabilidade aplicados ao que já rodo em produção."
+  }
+];
+
+const PALETTE = [
+  { hex: "#161826", role: "fundo" },
+  { hex: "#232532", role: "superfície / cards" },
+  { hex: "#292b31", role: "poços e thumbs" },
+  { hex: "#e9e9ed", role: "texto" },
+  { hex: "#cfd3e5", role: "texto secundário" },
+  { hex: "#75798c", role: "texto terciário / mono" },
+  { hex: "#9184d9", role: "accent (linha, borda, foco)" },
+  { hex: "#d2cefd", role: "accent claro (texto)" }
+];
+
+const PALETTE_LIGHT = [
+  { hex: "#f7f8ff", role: "fundo" },
+  { hex: "#e9ebf8", role: "superfície / cards" },
+  { hex: "#232532", role: "texto" },
+  { hex: "#5d5294", role: "accent" }
+];
+
+const GLOW = "radial-gradient(1100px 560px at 84% -8%, color-mix(in srgb, var(--color-accent) 11%, transparent), transparent 72%)";
+
+// Fundos candidatos — todos só background-image: nenhuma imagem, nenhum JS.
+const BACKGROUNDS = {
+  limpo: {
+    label: "limpo",
+    css: { backgroundImage: GLOW, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat" }
+  },
+  scan: {
+    label: "scanlines",
+    css: {
+      backgroundImage: [
+        GLOW,
+        "repeating-linear-gradient(to bottom, color-mix(in srgb, var(--color-text) 4%, transparent) 0 1px, transparent 1px 4px)"
+      ].join(","),
+      backgroundSize: "100% 100%, 100% 4px",
+      backgroundRepeat: "no-repeat, repeat"
+    }
+  },
+  diagonal: {
+    label: "hachura",
+    css: {
+      backgroundImage: [
+        GLOW,
+        "repeating-linear-gradient(135deg, color-mix(in srgb, var(--color-text) 4%, transparent) 0 1px, transparent 1px 11px)"
+      ].join(","),
+      backgroundSize: "100% 100%, 16px 16px",
+      backgroundRepeat: "no-repeat, repeat"
+    }
+  },
+  aurora: {
+    label: "aurora",
+    css: {
+      backgroundImage: [
+        "radial-gradient(880px 520px at 88% -10%, color-mix(in srgb, var(--color-accent) 16%, transparent), transparent 70%)",
+        "radial-gradient(760px 620px at -12% 34%, color-mix(in srgb, var(--color-accent-2) 11%, transparent), transparent 72%)",
+        "radial-gradient(700px 480px at 46% 104%, color-mix(in srgb, var(--color-accent) 9%, transparent), transparent 70%)"
+      ].join(","),
+      backgroundSize: "100% 100%, 100% 100%, 100% 100%",
+      backgroundRepeat: "no-repeat, no-repeat, no-repeat"
+    }
+  },
+  contorno: {
+    label: "contorno",
+    css: {
+      backgroundImage: [
+        GLOW,
+        "repeating-radial-gradient(circle at 96% -4%, transparent 0 78px, color-mix(in srgb, var(--color-text) 5%, transparent) 78px 79px)"
+      ].join(","),
+      backgroundSize: "100% 100%, 100% 100%",
+      backgroundRepeat: "no-repeat, no-repeat"
+    }
+  }
+};
+const BG_ORDER = ["scan", "diagonal", "aurora", "contorno", "limpo"];
+
+const btn = (on) => ({
+  fontFamily: "var(--font-mono)", fontSize: "11px", cursor: "pointer",
+  padding: "4px 10px", borderRadius: "6px",
+  border: "1px solid " + (on ? "#9184d9" : "#3f424d"),
+  color: on ? "#d2cefd" : "#9397ab",
+  background: on ? "rgba(145,132,217,0.14)" : "transparent"
+});
+
+class Component extends DCLogic {
+  state = { open: null, view: "desktop", theme: null, bg: null };
+
+  componentDidMount() {
+    this._key = (e) => { if (e.key === "Escape") this.setState({ open: null }); };
+    window.addEventListener("keydown", this._key);
+  }
+  componentWillUnmount() { window.removeEventListener("keydown", this._key); }
+
+  renderVals() {
+    const mobile = this.state.view === "mobile";
+    const theme = this.state.theme ?? this.props.theme ?? "dark";
+    const bg = this.state.bg ?? this.props.bg ?? "aurora";
+    return {
+      bgLabel: "fundo: " + BACKGROUNDS[bg].label,
+      bgBtnStyle: btn(false),
+      cycleBg: () => {
+        const i = BG_ORDER.indexOf(bg);
+        this.setState({ bg: BG_ORDER[(i + 1) % BG_ORDER.length] });
+      },
+      theme,
+      themeLabel: theme === "light" ? "tema: claro" : "tema: escuro",
+      themeGlyph: theme === "light" ? "☀" : "☾",
+      toggleTheme: () => this.setState({ theme: theme === "light" ? "dark" : "light" }),
+      setDesktop: () => this.setState({ view: "desktop" }),
+      setMobile: () => this.setState({ view: "mobile" }),
+      toggleModal: () => this.setState((s) => ({ open: s.open ? null : PROJECTS[0].slug })),
+      desktopBtnStyle: btn(!mobile),
+      mobileBtnStyle: btn(mobile),
+      modalBtnStyle: btn(!!this.state.open),
+      themeBtnStyle: btn(false),
+      frameStyle: {
+        position: "relative",
+        width: mobile ? "420px" : "100%",
+        maxWidth: "100%",
+        margin: mobile ? "0 auto" : "0",
+        border: "1px solid #2a2c3c",
+        borderRadius: "10px",
+        overflow: "hidden",
+        boxShadow: "0 20px 60px rgba(0,0,0,0.45)"
+      },
+      backdropStyle: {
+        position: "fixed", top: 0, bottom: 0,
+        left: mobile ? "50%" : 0, right: 0,
+        width: mobile ? "420px" : "auto",
+        transform: mobile ? "translateX(-50%)" : "none",
+        zIndex: 60, display: "grid", placeItems: "center",
+        padding: mobile ? "12px" : "clamp(12px, 3vw, 40px)",
+        background: "color-mix(in srgb, var(--color-neutral-900) 78%, transparent)",
+        backdropFilter: "blur(4px)"
+      },
+      dialogStyle: {
+        width: mobile ? "100%" : "min(840px, 100%)",
+        maxHeight: "84vh", overflow: "auto",
+        border: "1px solid var(--color-neutral-700)",
+        borderRadius: "var(--radius-lg)",
+        background: "var(--color-surface)",
+        boxShadow: "var(--shadow-lg)"
+      },
+      pageStyle: {
+        position: "relative", overflow: "hidden",
+        containerType: "inline-size",
+        color: "var(--color-text)", fontFamily: "var(--font-body)",
+        backgroundColor: "var(--color-bg)",
+        ...BACKGROUNDS[bg].css
+      },
+      skillGroups: SKILL_GROUPS,
+      legend: LEGEND,
+      timeline: TIMELINE,
+      education: EDUCATION,
+      palette: PALETTE,
+      paletteLight: PALETTE_LIGHT,
+      showForm: this.props.showForm ?? false,
+      showStyleSheet: this.props.showStyleSheet ?? true,
+      onSubmit: (e) => e.preventDefault(),
+      stop: (e) => e.stopPropagation(),
+      closeModal: () => this.setState({ open: null }),
+      activeProject: PROJECTS.find((p) => p.slug === this.state.open) || null,
+      projects: PROJECTS.map((p) => ({
+        ...p,
+        onOpen: () => this.setState({ open: p.slug }),
+        onKey: (e) => {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); this.setState({ open: p.slug }); }
+        }
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>
