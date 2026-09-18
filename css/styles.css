@@ -314,13 +314,9 @@ a { color: inherit; }
 .hero-meta .value { color: var(--color-neutral-200); }
 
 /* ══════ Sobre ══════ */
-.about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: clamp(24px, 4cqw, 64px); }
-.about-grid h2 { font-size: clamp(24px, 3cqw, 34px); max-width: 24ch; }
+.about-grid {}
 .about-grid p { font-size: 15px; line-height: 1.7; color: var(--color-neutral-300); text-wrap: pretty; margin-bottom: 16px; }
 .about-grid p:last-of-type { margin-bottom: 0; }
-.about-stats { display: flex; flex-wrap: wrap; gap: 20px 40px; margin-top: 24px; font-family: var(--font-mono); }
-.about-stats .num { font-size: 23px; color: var(--color-text); margin: 0; }
-.about-stats .label { font-size: 10.5px; letter-spacing: 0.08em; color: var(--color-neutral-500); margin: 0; text-transform: uppercase; }
 
 /* ══════ Skills ══════ */
 .skills-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin-bottom: 18px; }
